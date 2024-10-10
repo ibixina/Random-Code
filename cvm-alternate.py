@@ -4,7 +4,7 @@ def main():
     max_buffer_size = 10
     b = {}
 
-    m = 100000
+    m = 1000000
     data_stream = [random.randint(0,m*2) for i in range(m)] # random stream of data of length m
     print(len(set(data_stream)))
     for a in data_stream:
