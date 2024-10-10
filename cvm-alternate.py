@@ -4,7 +4,7 @@ def main():
     max_buffer_size = 10
     b = []
 
-    m = 100
+    m = 10000
     data_stream = [random.randint(0,m*2) for i in range(m)] # random stream of data of length m
     print(len(set(data_stream)))
     for a in data_stream:
@@ -15,13 +15,12 @@ def main():
         u = random.randint(0,1)
         if (u <= p):
             b.append((a, u))
-        while len(b) == max_buffer_size:
-            b_index = 0
-            remove = True if random.randint(0,1) < 0.5 else False
-            if remove:
-                b.pop(b_index)
-            else:
-                b_index += 1
+        if len(b) == max_buffer_size:
+            remove_queue = []
+            for i in b:
+                remove = True if random.random() <0.5 else False
+            for i in remove_queue:
+                b.remove(i)
             p = p/2
     print(len(b)/p)
 
