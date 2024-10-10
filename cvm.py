@@ -4,8 +4,8 @@ def main():
     p = 1 # probability of any element being in the buffer
     b = set() # buffer
 
-    b_size = 20 # buffer size
-    m = 150 # length of the stream
+    b_size = 100 # buffer size
+    m = 150000 # length of the stream
 
     data_stream = [random.randint(0,m*2) for i in range(m)] # random stream of data of length m
     print(len(data_stream))
