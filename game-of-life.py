@@ -37,12 +37,13 @@ def main():
                     board[y][x] = u"\u2588"
                 elif current == u"\u2588" and no_of_alive in [2,3]:
                     board[y][x] = u"\u2588"
+                if (random.random() < 0.01):board[y][x] = u"\u2588"
         for i in range(h):
             sys.stdout.write("\033[F")
         for row in board:
             print(" ".join(row))
         # print()
-        time.sleep(0.7)
+        time.sleep(0.4)
         # input()
 
     pass
