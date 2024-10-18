@@ -8,6 +8,11 @@ args = sys.argv
 w =45
 h = 45
 
+# fillChar = u"\u2588"
+
+fillChar = "#"
+empChar = " "
+
 mutation = 0.01
 mutation /= 100
 
@@ -24,7 +29,7 @@ def is_alive():
     return False
 
 def main():
-    board = [[u"\u2588" if is_alive() else " " for i in range(w)] for j in range(h)]
+    board = [[fillChar if is_alive() else " " for i in range(w)] for j in range(h)]
     for row in board:
         print("".join(row))
     while True:
@@ -36,7 +41,7 @@ def main():
                 for dx,dy in [(1,1), (1,0), (0,1), (-1,0), (0,-1), (-1, -1), (-1, 1), (1, -1)]:
                     nx, ny = x+dx, y+dy
                     if (0<=nx<w and 0<=ny<h):
-                        if cboard[ny][nx] == u"\u2588":
+                        if cboard[ny][nx] == fillChar:
                             no_of_alive += 1
                 # print(no_of_alive, current)
                 if no_of_alive < 2:
@@ -44,10 +49,10 @@ def main():
                 elif no_of_alive > 3:
                     board[y][x] = " "
                 elif current == " " and no_of_alive == 3:
-                    board[y][x] = u"\u2588"
-                elif current == u"\u2588" and no_of_alive in [2,3]:
-                    board[y][x] = u"\u2588"
-                if (random.random() < mutation):board[y][x] = u"\u2588"
+                    board[y][x] = fillChar
+                elif current == fillChar and no_of_alive in [2,3]:
+                    board[y][x] = fillChar
+                if (random.random() < mutation):board[y][x] = fillChar
         for i in range(h):
             sys.stdout.write("\033[F")
         for row in board:
