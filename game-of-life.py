@@ -8,13 +8,23 @@ args = sys.argv
 w =45
 h = 45
 
+mutation = 0.01
+mutation /= 100
+
+alive_perc = 10
+alive_perc /= 100
+
 if (len(args) == 3):
     w = int(args[1])
     h = int(args[2])
 
+def is_alive():
+    if (random.random() < alive_perc):
+        return True
+    return False
 
 def main():
-    board = [[str(random.choice([u"\u2588", ' ',' ', ' '])) for i in range(w)] for j in range(h)]
+    board = [[u"\u2588" if is_alive() else " " for i in range(w)] for j in range(h)]
     for row in board:
         print("".join(row))
     while True:
@@ -37,7 +47,7 @@ def main():
                     board[y][x] = u"\u2588"
                 elif current == u"\u2588" and no_of_alive in [2,3]:
                     board[y][x] = u"\u2588"
-                if (random.random() < 0.01):board[y][x] = u"\u2588"
+                if (random.random() < mutation):board[y][x] = u"\u2588"
         for i in range(h):
             sys.stdout.write("\033[F")
         for row in board:
