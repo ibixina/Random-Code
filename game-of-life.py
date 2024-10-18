@@ -11,7 +11,7 @@ h = 45
 mutation = 0.01
 mutation /= 100
 
-alive_perc = 10
+alive_perc = 5
 alive_perc /= 100
 
 if (len(args) == 3):
