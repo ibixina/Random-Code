@@ -3,10 +3,18 @@ import sys
 import random
 import time
 args = sys.argv
+
+
 w =45
 h = 45
+
+if (len(args) == 3):
+    w = int(args[1])
+    h = int(args[2])
+
+
 def main():
-    board = [[str(random.choice([u"\u2588", ' ', ' ', ' ', ' ', ' '])) for i in range(w)] for j in range(h)]
+    board = [[str(random.choice([u"\u2588", ' ',' ', ' '])) for i in range(w)] for j in range(h)]
     for row in board:
         print("".join(row))
     while True:
