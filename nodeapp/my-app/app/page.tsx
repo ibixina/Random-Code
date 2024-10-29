@@ -29,9 +29,10 @@ export default function Portfolio() {
     return Array.from({ length: 100 }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
-      fontSize: Math.random() * 16 + 8,
+      fontSize: Math.random() * 45 + 5,
       value: Math.floor(Math.random() * 10),
       isHovered: false,
+      color: "red"
     }))
   }, [])
 
@@ -48,29 +49,14 @@ export default function Portfolio() {
   })
 
   const handleNumberClick = (index: number) => {
+    console.log('Handle Number Click');
     setBackgroundNumbers((prev) => {
-      const newNumbers = [...prev]
-      const clickedNumber = newNumbers[index]
+      const newNumbers = [...prev];
+      const clickedNumber = newNumbers[index];
 
       // Perform a random calculation
-      const randomOperation = Math.floor(Math.random() * 4)
-      const randomValue = Math.floor(Math.random() * 10) + 1
-
-      switch (randomOperation) {
-        case 0:
-          clickedNumber.value = (clickedNumber.value + randomValue) % 10
-          break
-        case 1:
-          clickedNumber.value = Math.abs(clickedNumber.value - randomValue) % 10
-          break
-        case 2:
-          clickedNumber.value = (clickedNumber.value * randomValue) % 10
-          break
-        case 3:
-          clickedNumber.value = Math.floor(clickedNumber.value / randomValue) % 10
-          break
-      }
-
+      clickedNumber.value++;
+      console.log(clickedNumber.value);
       return newNumbers
     })
   }
@@ -79,6 +65,12 @@ export default function Portfolio() {
     setBackgroundNumbers((prev) => {
       const newNumbers = [...prev]
       newNumbers[index].isHovered = isHovered
+      newNumbers[index].color = (() => {
+        //const random = Math.round(Math.random() * 5);
+        const colors = ["green", "blue", "white", "purple", "yellow", "pink", "black", "aqua", "cyan", "gray"];
+        const val = newNumbers[index].value % 10;
+        return colors[val];
+      })();
       return newNumbers
     })
   }
@@ -96,6 +88,7 @@ export default function Portfolio() {
                 left: `${number.x}%`,
                 top: `${number.y}%`,
                 fontSize: `${number.fontSize}px`,
+                color: `${number.color}`
               }}
               onClick={() => handleNumberClick(i)}
               onMouseEnter={() => handleNumberHover(i, true)}
@@ -113,7 +106,7 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
             className="text-5xl font-bold mb-4"
           >
-            Jane Doe
+            Shishir
           </motion.h1>
           <motion.p
             initial={{ y: 50, opacity: 0 }}
@@ -134,20 +127,20 @@ export default function Portfolio() {
             <Music className="w-8 h-8 text-pink-500" />
           </motion.div>
         </div>
-      </section>
+      </section >
 
       {/* About Section */}
-      <section className="py-20 bg-gray-800">
+      < section className="py-20 bg-gray-800" >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto text-center">
-            I'm a passionate computer science student with a keen interest in artificial intelligence, cryptography, and music technology. My goal is to combine these fields to create innovative solutions that push the boundaries of what's possible.
+            I'm a passionate computer science student with a keen interest in artificial intelligence, cryptography, and music technology. My goal is to combine these fields to create innovative solutions that push the boundaries of what's possiblena
           </p>
         </div>
-      </section>
+      </section >
 
       {/* Skills Section */}
-      <section className="py-20 bg-gray-900">
+      < section className="py-20 bg-gray-900" >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -168,10 +161,10 @@ export default function Portfolio() {
             />
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Projects Section */}
-      <section className="py-20 bg-gray-800">
+      < section className="py-20 bg-gray-800" >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -188,35 +181,39 @@ export default function Portfolio() {
               description="A machine learning model that analyzes audio features to detect and classify emotions in music tracks."
             />
             <ProjectCard
+              title="Testing Card"
+              description="Descriptions"
+            />
+            <ProjectCard
               title="Blockchain-based Music Licensing"
               description="A decentralized platform for managing music rights and royalties using blockchain technology and smart contracts."
             />
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-900">
+      < section className="py-20 bg-gray-900" >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
           <p className="text-lg text-gray-300 mb-8">
             Interested in collaborating or learning more about my work? Feel free to reach out!
           </p>
           <a
-            href="mailto:jane.doe@example.com"
+            href="mailto:archimidz@duck.com"
             className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-300"
           >
             <Mail className="w-5 h-5 mr-2" />
             Contact Me
           </a>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer className="py-6 bg-gray-800 text-center">
-        <p className="text-gray-400">© 2023 Jane Doe. All rights reserved.</p>
-      </footer>
-    </div>
+      < footer className="py-6 bg-gray-800 text-center" >
+        <p className="text-gray-400">© 2023 Shishir. All rights reserved.</p>
+      </footer >
+    </div >
   )
 }
 
