@@ -188,7 +188,7 @@ function GameOfLife() {
   }, [initialize])
 
   useEffect(() => {
-    const intervalId = setInterval(runSimulation, 200)
+    const intervalId = setInterval(runSimulation, 500)
     return () => clearInterval(intervalId)
   }, [runSimulation])
 
