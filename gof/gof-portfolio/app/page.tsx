@@ -17,7 +17,7 @@ export default function Home() {
       {mounted && <GameOfLife />}
 
       <div className="relative z-10">
-        <header className="sticky top-0 bg-gray-50/80 backdrop-blur-sm">
+        <header className="sticky z-30 top-0 bg-gray-50/80 backdrop-blur-sm">
           <nav className="container mx-auto px-6 py-4">
             <ul className="flex justify-center space-x-8">
               <li><a href="#about" className="hover:text-blue-500 transition-colors">About</a></li>
@@ -63,9 +63,9 @@ export default function Home() {
                 color="blue"
               />
               <ProjectCard
-                title="Secure Messaging App"
-                description="Created an end-to-end encrypted messaging application using modern cryptographic protocols."
-                color="green"
+                title="Music Generation AI Model"
+                description="Created music generation tool using the concepts of large language models"
+                color="purple"
               />
               <ProjectCard
                 title="Mathematical Visualization Tool"
@@ -83,15 +83,15 @@ export default function Home() {
           <section id="contact" className="py-20">
             <h2 className="text-3xl font-semibold mb-6 text-red-500">Get in Touch</h2>
             <div className="flex justify-center space-x-6">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-500 transition-colors">
+              <a href="https://github.com/ibixina" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-500 transition-colors">
                 <Github size={24} />
                 <span className="sr-only">GitHub</span>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-green-500 transition-colors">
+              <a href="https://www.linkedin.com/in/shishir-shrestha-7759b5331/" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-green-500 transition-colors">
                 <Linkedin size={24} />
                 <span className="sr-only">LinkedIn</span>
               </a>
-              <a href="mailto:jane@example.com" className="text-gray-700 hover:text-purple-500 transition-colors">
+              <a href="mailto:theshishir01@gmail.com" className="text-gray-700 hover:text-purple-500 transition-colors">
                 <Mail size={24} />
                 <span className="sr-only">Email</span>
               </a>
@@ -101,7 +101,7 @@ export default function Home() {
 
         <footer className="bg-gray-100 py-6 mt-20">
           <div className="container mx-auto px-6 text-center text-gray-600">
-            <p>&copy; {new Date().getFullYear()} Jane Doe. All rights reserved.</p>
+            <p> {new Date().getFullYear()} ibixina.</p>
           </div>
         </footer>
       </div>
@@ -139,7 +139,7 @@ function GameOfLife() {
   // Fixed dimensions for the game board
   const FIXED_WIDTH = 2000  // Larger than typical viewport
   const FIXED_HEIGHT = 2000
-  const CELL_SIZE = 30      // Fixed cell size
+  const CELL_SIZE = 35      // Fixed cell size
 
   const rows = Math.floor(FIXED_HEIGHT / CELL_SIZE)
   const cols = Math.floor(FIXED_WIDTH / CELL_SIZE)
@@ -150,6 +150,7 @@ function GameOfLife() {
     'rgba(139, 92, 246, 0.5)',  // purple
     'rgba(239, 68, 68, 0.5)',   // red
     'rgba(245, 158, 11, 0.5)',  // yellow
+
   ]
 
   const initialize = useCallback(() => {
