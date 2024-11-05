@@ -40,7 +40,7 @@ export default function Home() {
           <section id="about" className="py-20">
             <h2 className="text-3xl font-semibold mb-6 text-blue-500">About Me</h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              I'm a passionate computer science student with a keen interest in the intersection of artificial intelligence,
+              I&aposm a passionate computer science student with a keen interest in the intersection of artificial intelligence,
               mathematics, and cryptography. My goal is to leverage these fields to create innovative solutions for complex problems.
             </p>
           </section>
@@ -134,7 +134,7 @@ function ProjectCard({ title, description, color }: { title: string, description
 function GameOfLife() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [grid, setGrid] = useState<number[][]>([])
-  const [isRunning, setIsRunning] = useState(true)
+  const [isRunning] = useState(true)
 
   // Fixed dimensions for the game board
   const FIXED_WIDTH = 2000  // Larger than typical viewport
