@@ -1,0 +1,1 @@
+eval(["console.log('hello')","", "print('hello')"][-1 % 2 + 1])
