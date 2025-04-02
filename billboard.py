@@ -113,6 +113,7 @@ def process_billboard_csv():
             # If found, get the URL
             if song_path:
                 song_url = get_song_lyrics_url(song_path)
+                if song_url == "##": continue
                 song_lyrics = get_song_lyrics(song_url)
                 df.at[index, 'genius_url'] = song_url
                 df.at[index, 'lyrics'] = song_lyrics
