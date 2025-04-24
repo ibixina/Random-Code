@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Lichess Best Move Overlay",
+  "version": "1.0",
+  "description": "Overlays the best move on lichess.com using Stockfish.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://lichess.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://lichess.org/*"],
+      "js": [
+        "chess.js",
+        "chessEngine.js",
+        "content_script.js"
+      ]
+    }
+  ],
+  "options_page": "options.html"
+}

@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stockfish Worker</title>
+</head>
+<body>
+  <h1>Stockfish Worker</h1>
+</body> 
+
+<script>
+  const worker = new Worker("engine/stockfish.js");
+  worker.onmessage = (e) => console.log("[Worker] message:", e.data);
+  worker.onerror = (e) => console.error("[Worker] error:", e);
+  worker.postMessage("uci");
+</script>
+  
+</html>

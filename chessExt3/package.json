@@ -1,0 +1,15 @@
+{
+  "name": "chessext3",
+  "version": "1.0.0",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "install": "^0.13.0",
+    "stockfish.js": "^10.0.2"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "install": "^0.13.0",
+    "puppeteer": "^23.11.1",
+    "stockfish": "^16.0.0",
+    "stockfish.js": "^10.0.2"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Lichess Best Move Overly",
+  "version": "1.0",
+  "description": "Shows the best move on Lichess",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://lichess.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://lichess.org/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "engine/stockfish.js",
+        "engine/stockfish.wasm",
+        "engine/stockfish.worker.js"
+      ],
+      "matches": ["https://lichess.org/*"]
+    }
+  ]
+}
+
