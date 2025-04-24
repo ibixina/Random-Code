@@ -1,19 +1,34 @@
 // content.js
 
+let lastFen = "";
 // ————————————————————————————————————————————————
 // 1) FEN extraction & board utilities
 // ————————————————————————————————————————————————
+
 function generateFenFromDOM() {
   const board = document.querySelector("cg-board");
+  const turn = document.querySelector("div.rclock-white[class*='running']")
+    ? "white"
+    : "black";
   if (!board) return null;
+
   const size = board.getBoundingClientRect().width / 8;
   const grid = Array.from({ length: 8 }, () => Array(8).fill(null));
+
   board.querySelectorAll("piece").forEach((piece) => {
+    if (
+      !piece.className.includes("white") &&
+      !piece.className.includes("black")
+    ) {
+      return;
+    }
     const [color, type] = piece.className.split(" ");
     const m = piece.style.transform.match(/translate\((\d+)px,\s*(\d+)px\)/);
     if (!m) return;
+
     const file = Math.round(parseInt(m[1], 10) / size);
     const rank = Math.round(parseInt(m[2], 10) / size);
+
     const map = {
       pawn: "p",
       knight: "n",
@@ -25,7 +40,8 @@ function generateFenFromDOM() {
     const ch = map[type];
     if (ch) grid[rank][file] = color === "white" ? ch.toUpperCase() : ch;
   });
-  const rows = grid.map((row) =>
+
+  const rows = grid.slice().map((row) =>
     row.reduce((acc, sq) => {
       if (sq) return acc + sq;
       const last = acc.slice(-1);
@@ -34,34 +50,19 @@ function generateFenFromDOM() {
         : acc + "1";
     }, ""),
   );
-  let isWhiteTurn = true;
-  const turnIndicator = document.querySelector(".status");
-  if (turnIndicator)
-    isWhiteTurn = !turnIndicator.textContent.includes("Black to play");
-  return rows.join("/") + (isWhiteTurn ? " w " : " b ") + "- - 0 1";
+
+  const isWhiteTurn = turn === "white";
+  return `${rows.join("/")}${isWhiteTurn ? " w" : " b"} - - 0 1`;
 }
 
-function isBoardFlipped() {
-  return (
-    document
-      .querySelector(".cg-wrap")
-      ?.style.transform.includes("rotate(180deg)") || false
-  );
-}
-
-function notationToCoords(move, flipped) {
+function notationToCoords(move) {
   const f = "abcdefgh";
-  let [ff, fr, tf, tr] = move.split("");
-  let fromFile = f.indexOf(ff),
-    fromRank = 8 - parseInt(fr, 10);
-  let toFile = f.indexOf(tf),
-    toRank = 8 - parseInt(tr, 10);
-  if (flipped) {
-    fromFile = 7 - fromFile;
-    fromRank = 7 - fromRank;
-    toFile = 7 - toFile;
-    toRank = 7 - toRank;
-  }
+  const [ff, fr, tf, tr] = move.split("");
+  const fromFile = f.indexOf(ff);
+  const fromRank = 8 - parseInt(fr, 10);
+  const toFile = f.indexOf(tf);
+  const toRank = 8 - parseInt(tr, 10);
+
   return {
     from: { file: fromFile, rank: fromRank },
     to: { file: toFile, rank: toRank },
@@ -141,7 +142,7 @@ function debounce(fn, wait) {
 // 2) Cloud‐Eval analysis via Lichess API
 // ————————————————————————————————————————————————
 async function analyzeViaLocal(fen) {
-  const res = await fetch("https://10.20.67.231:5000/analysis", {
+  const res = await fetch("https://10.20.67.231:5000/analyze", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ fen }),
@@ -232,19 +233,16 @@ async function main() {
   });
 
   async function analyzeCurrent() {
+    console.log(enabled, analyzing);
     if (!enabled || analyzing) return;
+    console.log("Analyzing current position…");
     analyzing = true;
     const fen = generateFenFromDOM();
-    if (!fen || fen === lastFen) {
-      analyzing = false;
-      return;
-    }
-    lastFen = fen;
+    console.log("FEN:", fen);
     try {
       const { bestMove, evaluation, bestLine } = await analyzePosition(fen);
       if (bestMove && bestMove !== "(none)") {
-        const flipped = isBoardFlipped();
-        const { from, to } = notationToCoords(bestMove, flipped);
+        const { from, to } = notationToCoords(bestMove);
         createMoveArrow(from, to);
         displayEvaluation(evaluation, bestLine);
       }
@@ -255,15 +253,17 @@ async function main() {
   }
 
   // Observe and auto‐analyze on board changes
-  new MutationObserver(
-    debounce(() => {
-      if (enabled) analyzeCurrent();
-    }, 500),
-  ).observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-  });
+
+  setInterval(() => {
+    if (!enabled) return;
+
+    const currentFen = generateFenFromDOM();
+    if (!currentFen || currentFen === lastFen) return;
+
+    lastFen = currentFen;
+    console.log("Making new analysis request…");
+    analyzeCurrent();
+  }, 1000); // every 1 second
 
   // Alt+B shortcut
   document.addEventListener("keydown", (e) => {
