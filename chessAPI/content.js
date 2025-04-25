@@ -1,7 +1,7 @@
 // content.js
 
 let lastFen = "";
-let myTurn = true;
+let currentTurn;
 let lastBestMove = null;
 // ————————————————————————————————————————————————
 // 1) FEN extraction & board utilities
@@ -12,6 +12,10 @@ function generateFenFromDOM() {
   const turn = document.querySelector("div.rclock-black[class*='running']")
     ? "black"
     : "white";
+  if (turn !== currentTurn) {
+    removeArrow();
+    return null;
+  }
   if (!board) return null;
 
   const size = board.getBoundingClientRect().width / 8;
@@ -232,6 +236,10 @@ async function main() {
       document.getElementById("best-move-arrow")?.remove();
       document.getElementById("best-move-eval")?.remove();
     } else {
+      currentTurn = document.querySelector(
+        "div.rclock-black[class*='running']",
+      );
+      currentTurn = currentTurn ? "black" : "white";
       analyzeCurrent();
     }
   });
@@ -242,9 +250,11 @@ async function main() {
     console.log("Analyzing current position…");
     analyzing = true;
     const fen = generateFenFromDOM();
+    if (!fen) return;
     console.log("FEN:", fen);
     try {
-      const { bestMove, evaluation, bestLine } = await analyzePosition(fen);
+      const { bestMove, evaluation, bestLine } =
+        (await analyzePosition(fen)) || {};
       if (bestMove && bestMove !== "(none)") {
         const { from, to } = notationToCoords(bestMove);
         lastBestMove = { from, to };
@@ -268,7 +278,7 @@ async function main() {
     lastFen = currentFen;
     console.log("Making new analysis request…");
     analyzeCurrent();
-  }, 1000); // every 1 second
+  }, 300); // every 1 second
 
   // Alt+B shortcut
 
@@ -328,4 +338,8 @@ if (document.readyState === "complete") {
   main();
 } else {
   window.addEventListener("load", main);
+}
+
+function removeArrow() {
+  document.getElementById("best-move-arrow")?.remove();
 }
