@@ -1,15 +1,17 @@
 // content.js
 
 let lastFen = "";
+let myTurn = true;
+let lastBestMove = null;
 // ————————————————————————————————————————————————
 // 1) FEN extraction & board utilities
 // ————————————————————————————————————————————————
 
 function generateFenFromDOM() {
   const board = document.querySelector("cg-board");
-  const turn = document.querySelector("div.rclock-white[class*='running']")
-    ? "white"
-    : "black";
+  const turn = document.querySelector("div.rclock-black[class*='running']")
+    ? "black"
+    : "white";
   if (!board) return null;
 
   const size = board.getBoundingClientRect().width / 8;
@@ -51,8 +53,8 @@ function generateFenFromDOM() {
     }, ""),
   );
 
-  const isWhiteTurn = turn === "white";
-  return `${rows.join("/")}${isWhiteTurn ? " w" : " b"} - - 0 1`;
+  let isBlackTurn = turn === "black";
+  return `${rows.join("/")}${isBlackTurn ? " b" : " w"} - - 0 1`;
 }
 
 function notationToCoords(move) {
@@ -191,7 +193,9 @@ async function analyzePosition(fen) {
   console.log("analyzePositionc: ", fen);
   try {
     return await analyzeViaLocal(fen);
-  } catch (e) {}
+  } catch (e) {
+    //return await fetchLichessEval(fen);
+  }
 }
 
 // 3) Main overlay logic
@@ -243,6 +247,7 @@ async function main() {
       const { bestMove, evaluation, bestLine } = await analyzePosition(fen);
       if (bestMove && bestMove !== "(none)") {
         const { from, to } = notationToCoords(bestMove);
+        lastBestMove = { from, to };
         createMoveArrow(from, to);
         displayEvaluation(evaluation, bestLine);
       }
@@ -266,8 +271,54 @@ async function main() {
   }, 1000); // every 1 second
 
   // Alt+B shortcut
+
   document.addEventListener("keydown", (e) => {
-    if (e.altKey && e.key.toLowerCase() === "b") btn.click();
+    if (e.key.toLowerCase() !== "x" || !lastBestMove) return;
+
+    const board = document.querySelector("cg-board");
+    if (!board) return;
+
+    const rect = board.getBoundingClientRect();
+    const squareSize = rect.width / 8;
+    const { from, to } = lastBestMove;
+
+    const toViewport = ({ file, rank }) => ({
+      x: rect.left + file * squareSize + squareSize / 2,
+      y: rect.top + rank * squareSize + squareSize / 2,
+    });
+
+    const showDot = ({ x, y }, color = "red") => {
+      const dot = document.createElement("div");
+      Object.assign(dot.style, {
+        position: "fixed",
+        left: `${x - 5}px`,
+        top: `${y - 5}px`,
+        width: "10px",
+        height: "10px",
+        backgroundColor: color,
+        borderRadius: "50%",
+        zIndex: 9999,
+        pointerEvents: "none",
+      });
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 400);
+    };
+
+    const fireClickSeq = ({ x, y }) => {
+      const el = document.elementFromPoint(x, y);
+      if (!el) return;
+      const opts = { bubbles: true, cancelable: true, clientX: x, clientY: y };
+      ["mousedown", "mouseup", "click"].forEach((type) => {
+        el.dispatchEvent(new MouseEvent(type, opts));
+      });
+      showDot({ x, y });
+    };
+
+    const src = toViewport(from);
+    const dst = toViewport(to);
+
+    fireClickSeq(src);
+    setTimeout(() => fireClickSeq(dst), 100);
   });
 
   console.log("Best Move Overlay ready");
