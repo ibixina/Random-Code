@@ -11,7 +11,7 @@
 // @connect      localhost
 // ==/UserScript==
 
-(function () {
+(async function () {
   "use strict";
 
   const OriginalWebSocket = unsafeWindow.WebSocket;
@@ -208,4 +208,42 @@
       if (btn) btn.click();
     }
   });
+
+  async function fetchPageInitData() {
+    try {
+      const url = location.href; // current page URL
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "text/html",
+        },
+        credentials: "same-origin", // important for Lichess cookies/session
+      });
+
+      const text = await response.text();
+
+      // Extract the page-init-data script content
+      const match = text.match(
+        /<script type="application\/json" id="page-init-data">([\s\S]*?)<\/script>/,
+      );
+      if (!match) {
+        throw new Error("page-init-data not found in HTML");
+      }
+
+      const json = JSON.parse(match[1]);
+      console.log("[Fetched Page-Init-Data]", json);
+      return json;
+    } catch (err) {
+      console.error("Failed to fetch page-init-data:", err);
+      return null;
+    }
+  }
+
+  function getPuzzleIndex() {
+    const selector =
+      "#main-wrap > main > div > div.puz-side > div.puz-side__top.puz-side__solved > div";
+    const element = document.querySelector(selector);
+    const text = element?.textContent;
+    return text ? text - 1 : null;
+  }
 })();
