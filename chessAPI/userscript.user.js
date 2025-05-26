@@ -11,7 +11,7 @@
 // @connect      localhost
 // ==/UserScript==
 
-(async function () {
+(async function() {
   "use strict";
 
   const OriginalWebSocket = unsafeWindow.WebSocket;
@@ -35,11 +35,11 @@
             currentFen = fen;
             if (enabled) analyzeCurrent();
           }
-        } catch (err) {}
+        } catch (err) { }
       });
 
       const originalSend = ws.send.bind(ws);
-      ws.send = function (data) {
+      ws.send = function(data) {
         console.log("[Captured Outgoing]", data);
         return originalSend(data);
       };
@@ -97,7 +97,7 @@
     const [fx, fy] = [(from.file + 0.5) * sq, (from.rank + 0.5) * sq];
     const [tx, ty] = [(to.file + 0.5) * sq, (to.rank + 0.5) * sq];
     const angle = Math.atan2(ty - fy, tx - fx);
-    const L = 10;
+    const L = 60;
     const x1 = tx - L * Math.cos(angle - Math.PI / 6);
     const y1 = ty - L * Math.sin(angle - Math.PI / 6);
     const x2 = tx - L * Math.cos(angle + Math.PI / 6);
@@ -108,7 +108,7 @@
       `M${fx},${fy} L${tx},${ty} M${tx},${ty} L${x1},${y1} M${tx},${ty} L${x2},${y2}`,
     );
     path.setAttribute("stroke", "rgba(0,155,255,0.8)");
-    path.setAttribute("stroke-width", "4");
+    path.setAttribute("stroke-width", "8");
     svg.appendChild(path);
     board.appendChild(svg);
   }
@@ -133,41 +133,6 @@
       },
     };
   }
-  function main() {
-    const btn = document.createElement("button");
-    btn.id = "best-move-overlay-btn";
-    btn.textContent = "Show Best Move";
-    Object.assign(btn.style, {
-      position: "fixed",
-      bottom: "20px",
-      right: "20px",
-      zIndex: 10000,
-      padding: "8px 12px",
-      backgroundColor: "#5ba65b",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      cursor: "pointer",
-    });
-    document.body.appendChild(btn);
-
-    btn.addEventListener("click", () => {
-      enabled = !enabled;
-      btn.textContent = enabled ? "Hide Best Move" : "Show Best Move";
-      btn.style.backgroundColor = enabled ? "#d85000" : "#5ba65b";
-      if (!enabled) {
-        document.getElementById("best-move-arrow")?.remove();
-      } else {
-        currentTurn = document.querySelector(
-          "div.rclock-black[class*='running']",
-        );
-        currentTurn = currentTurn ? "black" : "white";
-        analyzeCurrent();
-      }
-    });
-  }
-
-  main();
 
   async function analyzeCurrent() {
     if (!enabled || analyzing) return;
@@ -204,8 +169,16 @@
 
   document.addEventListener("keydown", (e) => {
     if (e.key == "x") {
-      const btn = document.getElementById("best-move-overlay-btn");
-      if (btn) btn.click();
+      enabled = !enabled;
+      if (!enabled) {
+        document.getElementById("best-move-arrow")?.remove();
+      } else {
+        currentTurn = document.querySelector(
+          "div.rclock-black[class*='running']",
+        );
+        currentTurn = currentTurn ? "black" : "white";
+        analyzeCurrent();
+      }
     }
   });
 
@@ -247,3 +220,4 @@
     return text ? text - 1 : null;
   }
 })();
+
