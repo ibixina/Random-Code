@@ -5,7 +5,7 @@ import sys
 
 app = Flask(__name__)
 engine = chess.engine.SimpleEngine.popen_uci("stockfish")
-SEARCH_DEPTH = 4
+SEARCH_DEPTH = 15
 
 @app.before_request
 def log_request():
@@ -38,8 +38,7 @@ def analyze():
         return jsonify({"error": "Invalid FEN"}), 400
 
 
-    with chess.engine.SimpleEngine.popen_uci("stockfish") as engine:
-        info = engine.analyse(board, chess.engine.Limit(depth=SEARCH_DEPTH))
+    info = engine.analyse(board, chess.engine.Limit(depth=SEARCH_DEPTH))
     pv = info.get("pv", [])
     best_move = pv[0].uci() if pv else None
 
