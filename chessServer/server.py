@@ -5,7 +5,7 @@ import sys
 
 app = Flask(__name__)
 engine = chess.engine.SimpleEngine.popen_uci("stockfish")
-SEARCH_DEPTH = 15
+SEARCH_DEPTH = 10
 
 @app.before_request
 def log_request():
