@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify, make_response
 import chess, json
 import chess.engine
 import sys
+import random
 
 app = Flask(__name__)
 engine = chess.engine.SimpleEngine.popen_uci("stockfish")
 SEARCH_DEPTH = 10
+RANDOM_CHANCE = 0
 
 @app.before_request
 def log_request():
@@ -38,19 +40,39 @@ def analyze():
         return jsonify({"error": "Invalid FEN"}), 400
 
 
-    info = engine.analyse(board, chess.engine.Limit(depth=SEARCH_DEPTH))
-    pv = info.get("pv", [])
-    best_move = pv[0].uci() if pv else None
-
-    
-    score = info.get("score")
-    if score.is_mate():
-        evaluation = f"Checkmate"
+    # info = engine.analyse(board, chess.engine.Limit(depth=SEARCH_DEPTH))
+    # pv = info.get("pv", [])
+    # best_move = pv[0].uci() if pv else None
+    #
+    # if random.random() < RANDOM_CHANCE:
+    #     legal_moves = list(board.legal_moves)
+    #     if legal_moves:
+    #         move = random.choice(legal_moves)
+    #     else:
+    #         move = None
+    # else:
+    #     move = best_move
+    #
+    evaluation = ""
+    pv_moves = ""
+    if random.random() < RANDOM_CHANCE:
+        # Make a random legal move
+        print("Making random move")
+        legal_moves = list(board.legal_moves)
+        best_move = random.choice(legal_moves).uci()
     else:
-        evaluation = f""
+        # Analyze and pick best move
+        info = engine.analyse(board, chess.engine.Limit(depth=SEARCH_DEPTH))
+        pv = info.get("pv", [])
+        best_move = pv[0].uci() if pv else None
+        score = info.get("score")
+        if score.is_mate():
+            evaluation = f"Checkmate"
+        else:
+            evaluation = f""
 
 
-    pv_moves = " ".join(m.uci() for m in pv)
+        pv_moves = " ".join(m.uci() for m in pv)
     response = jsonify({
         "bestMove": best_move,
         "evaluation": evaluation,
