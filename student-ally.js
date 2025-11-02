@@ -1,37 +1,36 @@
 var fs = require("fs");
 var obj = JSON.parse(fs.readFileSync("./response_ally.json", "utf8"));
 
+
 async function send(senddata) {
   let req = await fetch("https://app.studentally.com/api/finish-orientation", {
-    credentials: "include",
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-      Accept: "application/json, text/plain, */*",
-      "Accept-Language": "en-US,en;q=0.5",
-      "Sec-GPC": "1",
-      "Sec-Fetch-Dest": "empty",
-      "Sec-Fetch-Mode": "no-cors",
-      "Sec-Fetch-Site": "same-site",
-      "Content-Type": "application/json",
-      "X-XSRF-TOKEN":
-        "eyJpdiI6IlhSUDFTcjhHMFhzakE2L25rb0ZpVUE9PSIsInZhbHVlIjoiOFIvUXNqMFgyZStkOXUzLy9nRlBYMVNjdHRTRWljVFB0a1RlcHZrcnVGSW0wSVJSZWVmSWR6WFpZU1YzVnl1aitKV1Bwbm1GS2pnRGhXcVVvYzFMMGljcGl2aVNPN296bzhwSFg4dHhGTGEzV1lMYk1kNTlxdy80RG91QURQVkQiLCJtYWMiOiJiZjdlODY1MGE4ZGM2NGQ2N2RmZTczZWE3YTkzZDhmY2U2OTJlMDE3ZmZmY2NiNDZjMGE2ZTAzNWIyYTljMzQ3IiwidGFnIjoiIn0%3D",
-      Pragma: "no-cache",
-      "Cache-Control": "no-cache",
+    "headers": {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "en-US,en;q=0.5",
+      "content-type": "application/json",
+      "priority": "u=1, i",
+      "sec-ch-ua": "\"Brave\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "sec-gpc": "1",
+      "x-xsrf-token": "eyJpdiI6IjY5UUxUSldqeFV6OHdkMmtFanRYYkE9PSIsInZhbHVlIjoiR0E0R1kxL2plTGlaZldwVVJBRDNUMUJ1VjRjN245bWtVUnRSdmtCK25XdllRdXVSUWc1dkhMUjhpampIMGVSeXJGandUNmZoQUtIWWsvQy8vVjlCTjI5RytPaGdrQ3BFaWNaeXV0a0NZRmFmVGNJUy9LQ0YvamcxZXFuSVlOOVgiLCJtYWMiOiI5ZjFjNmM0NjMwYmFlZGUyMTYxNDY4MmFjMTg1YjE3NDBmOTQxODkwY2UwMmFhYWY5YmNkY2VmMWY0NTcwNzkwIiwidGFnIjoiIn0="
     },
-    referrer: "https://web.studentally.com/",
-    body: senddata,
-    method: "POST",
-    mode: "cors",
+    "referrer": "https://web.studentally.com/",
+    "body": senddata,
+    "method": "POST",
+    "mode": "cors",
+    "credentials": "include"
+  }).then((response) => {
+    if (!response.ok) {
+      // If the response status is not OK, throw an error
+      console.log(response.body);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json(); // Parse the JSON from the response
   })
-    .then((response) => {
-      if (!response.ok) {
-        // If the response status is not OK, throw an error
-        console.log(response.body);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json(); // Parse the JSON from the response
-    })
     .then((data) => {
       console.log("Response Data:", data); // Print the entire response data
       // If you want to access specific parts of the data:
@@ -65,4 +64,4 @@ for (let question of data.questions) {
 }
 
 send_data["questions_answers"] = answers;
-console.log(JSON.stringify(send_data));
+console.log(JSON.stringify(send_data).replaceAll('"', '\\"'));

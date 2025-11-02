@@ -1,1 +1,104 @@
-{"data":{"id":76,"name":"Alcohol 407 - Incapacitation","description":null,"video_url":"https:\/\/www.youtube.com\/watch?v=N2J2saBFR2A","status":"active","status_readable":"Active","schools":[{"id":11,"name":"Houghton University","status":"active","status_readable":"Active","abbreviation":"HU","latitude":42.4254224,"longitude":-78.1576372,"website":"https:\/\/www.houghton.edu","logo":"https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/0f0fc621-cceb-4619-b65c-e8731ea1e74a","orientation_reminder":1,"components":{"alert":false,"orientation":true,"case_management":false,"coins_orientation":true,"security_geo_link":false,"security_geo_timer":false,"security_safe_zone":false,"security_instant_alert":false,"security_guardian_angel":false,"security_standard_timer":false,"campus_security_tip_line":false}},{"id":12,"name":"Baker University","status":"active","status_readable":"Active","abbreviation":"BU","latitude":38.7793179,"longitude":-95.1883651,"website":"https:\/\/www.bakeru.edu\/","logo":"https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/c43ddd41-8b02-4105-ab1c-5125a5eeff79","orientation_reminder":1,"components":{"alert":false,"orientation":true,"case_management":false,"coins_orientation":true,"security_geo_link":false,"security_geo_timer":false,"security_safe_zone":false,"security_instant_alert":false,"security_guardian_angel":false,"security_standard_timer":false,"campus_security_tip_line":false}},{"id":13,"name":"Hope College","status":"active","status_readable":"Active","abbreviation":"HC","latitude":42.7871967,"longitude":-86.1011083,"website":"https:\/\/hope.edu\/","logo":"https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/b884af05-adf5-430a-b47f-47d9edbcd3ad","orientation_reminder":1,"components":{"alert":false,"orientation":false,"case_management":false,"coins_orientation":false,"security_geo_link":false,"security_geo_timer":false,"security_safe_zone":false,"security_instant_alert":false,"security_guardian_angel":false,"security_standard_timer":false,"campus_security_tip_line":false}},{"id":14,"name":"Connecticut College","status":"active","status_readable":"Active","abbreviation":"CC","latitude":41.3764973,"longitude":-72.1048166,"website":"https:\/\/conncoll.edu\/","logo":"https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/5fdb6426-66a4-4ede-8fcc-25d47e8874a4","orientation_reminder":1,"components":{"alert":false,"orientation":true,"case_management":false,"coins_orientation":true,"security_geo_link":false,"security_geo_timer":false,"security_safe_zone":false,"security_instant_alert":false,"security_guardian_angel":false,"security_standard_timer":false,"campus_security_tip_line":false}},{"id":15,"name":"Rhodes College","status":"active","status_readable":"Active","abbreviation":"RC","latitude":35.1524611,"longitude":-89.9888392,"website":"https:\/\/www.rhodes.edu\/","logo":"https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/97b35cca-010f-4852-977b-2ea60f6d85a4","orientation_reminder":1,"components":{"alert":false,"orientation":true,"case_management":false,"coins_orientation":true,"security_geo_link":false,"security_geo_timer":false,"security_safe_zone":false,"security_instant_alert":false,"security_guardian_angel":false,"security_standard_timer":false,"campus_security_tip_line":false}}],"questions":[{"id":460,"question":"True or false, \"incapacitation\" and \"drunk\" (BAC above .08) are the same thing.","order":1,"answers":[{"id":1728,"answer":"A. True. If someone is drunk, they are incapacitated.","explanation":"Nope. It's false.","is_correct_answer":0,"order_column":1},{"id":1729,"answer":"B. False. Drunk is about BAC. Incapacitation is about understanding the essential details of an interaction.","explanation":"Correct.","is_correct_answer":1,"order_column":2}],"created_at":"2024-08-12T03:43:21.000000Z","updated_at":"2024-08-12T03:44:03.000000Z"},{"id":461,"question":"True or false, someone could be legally drunk with a BAC of .12, but not be incapacitated.","order":2,"answers":[{"id":1730,"answer":"A. True. If they can still appreciate the \"essential details\" of an interaction, they're not incapacitated.","explanation":"Correct.","is_correct_answer":1,"order_column":1},{"id":1731,"answer":"B. False. At .12, someone is incapacitated.","explanation":"No. It's true.","is_correct_answer":0,"order_column":2}],"created_at":"2024-08-12T03:43:48.000000Z","updated_at":"2024-08-13T04:26:16.000000Z"},{"id":462,"question":"Which effects of alcohol indicate the beginning of the \"gray area\" for incapacitation?","order":3,"answers":[{"id":1732,"answer":"A. Vomiting uncontrollably.","explanation":"No. It's diminished self-control and judgment.","is_correct_answer":0,"order_column":1},{"id":1733,"answer":"B. Being slightly more relaxed.","explanation":"No. It's diminished self-control and judgment.","is_correct_answer":0,"order_column":2},{"id":1734,"answer":"C. Having diminished self-control and judgment.","explanation":"No. It's diminished self-control and judgment.","is_correct_answer":1,"order_column":3},{"id":1735,"answer":"D. None of the above.","explanation":"No. It's diminished self-control and judgment.","is_correct_answer":0,"order_column":4}],"created_at":"2024-08-12T03:45:04.000000Z","updated_at":"2024-08-13T04:26:47.000000Z"},{"id":463,"question":"Mixing alcohol and sexual activity in the \"gray area\" of incapacitation is risky because...","order":4,"answers":[{"id":1737,"answer":"A. It's a gray area, so by definition, there are no clear answers.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":1},{"id":1738,"answer":"B. This is where people's inhibitions are lowered, so they can be more likely to engage in sexual behaviors.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":2},{"id":1739,"answer":"C. Alcohol Lag might mean someone had capacity when you began sexual activity, but lost capacity (became subsequently incapacitated) during the activity.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":3},{"id":1740,"answer":"D. All of the above, which is precisely why mixing sex and alcohol requires extra caution.","explanation":"Correct.","is_correct_answer":1,"order_column":4}],"created_at":"2024-08-12T03:46:16.000000Z","updated_at":"2024-08-12T03:47:05.000000Z"},{"id":464,"question":"What ROR should you follow if you think you've been given a \"date rape\" drug?","order":5,"answers":[{"id":1741,"answer":"A. Call AAA roadside assistance.","explanation":"No. It's ALERT a trusted person; ATTACH yourself to them; and ACT to get professional medical help.","is_correct_answer":0,"order_column":1},{"id":1742,"answer":"B. ACT out; ACCELLERATE my exit strategy; and ATTEND to my needs.","explanation":"No. It's ALERT a trusted person; ATTACH yourself to them; and ACT to get professional medical help.","is_correct_answer":0,"order_column":2},{"id":1743,"answer":"C. ALERT a trusted person; ATTACH myself to them; and ACT to get professional medical help.","explanation":"Correct.","is_correct_answer":1,"order_column":3},{"id":1744,"answer":"D. ATTACK first, ASK questions later.","explanation":"No. It's ALERT a trusted person; ATTACH yourself to them; and ACT to get professional medical help.","is_correct_answer":0,"order_column":4}],"created_at":"2024-08-12T03:47:56.000000Z","updated_at":"2024-08-12T03:48:39.000000Z"},{"id":465,"question":"Which of the following RORs and tactics will help you prevent someone from drugging your drink?","order":6,"answers":[{"id":1745,"answer":"A. Never accept a drink from someone you don't know.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":1},{"id":1746,"answer":"B. Never leave your drink unattended.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":2},{"id":1747,"answer":"C. If you're at a bar, get your drink straight from the bartender.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":3},{"id":1748,"answer":"D. In unfamiliar surroundings, avoid drinks with big open tops.","explanation":"True, but the correct answer was \"All of the above.\"","is_correct_answer":0,"order_column":4},{"id":1749,"answer":"E. All of the above.","explanation":"Correct.","is_correct_answer":1,"order_column":5}],"created_at":"2024-08-12T03:49:42.000000Z","updated_at":"2024-08-12T03:50:42.000000Z"},{"id":466,"question":"If I see someone experiencing signs of alcohol poisoning, like uncontrollable vomiting and unresponsiveness, I should...","order":7,"answers":[{"id":1750,"answer":"A. Tuck them into bed and help them sleep it off.","explanation":"No. They need professional medical help. The answer was \"(C and D).\"","is_correct_answer":0,"order_column":1},{"id":1751,"answer":"B. Put them in a cold shower to wake them up.","explanation":"No. They need professional medical help. The answer was \"(C and D).\"","is_correct_answer":0,"order_column":2},{"id":1752,"answer":"C. Call campus security or 911 and ask for medical help.","explanation":"No. They need professional medical help. The answer was \"(C and D).\"","is_correct_answer":0,"order_column":3},{"id":1753,"answer":"D. Stop them from drinking, put them on their side, and stay with them till help arrives.","explanation":"No. They need professional medical help. The answer was \"(C and D).\"","is_correct_answer":0,"order_column":4},{"id":1754,"answer":"E. (C and D).","explanation":"Correct.","is_correct_answer":1,"order_column":5}],"created_at":"2024-08-12T03:51:15.000000Z","updated_at":"2024-08-12T03:52:11.000000Z"},{"id":467,"question":"If I ever think that I might have an addiction problem, or if I'm having a difficult time in life and feel like I need to talk to someone, I should...","order":8,"answers":[{"id":1755,"answer":"A. Access MY RESOURCES through my Student Ally app. Everyone needs an Ally sometimes. That's what we are here for!","explanation":"Correct.","is_correct_answer":1,"order_column":1}],"created_at":"2024-08-12T03:52:21.000000Z","updated_at":"2024-08-12T03:52:37.000000Z"}],"total_passed":1292,"total_passed_score":105232,"total_students":1292,"minimum_score_to_pass":75,"order_column":67,"is_blocking":1,"play_sound":1,"for_students":1,"for_employees":0,"created_at":"2024-08-12T03:42:53.000000Z","updated_at":"2024-10-27T23:49:23.000000Z"}}
+{
+    "data": {
+        "id": 224,
+        "name": "Refresher 5 - Ongoing & Reporting",
+        "description": "Standard and Training Only 2025",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=sru6FNScUJ8",
+        "status": "active",
+        "status_readable": "Active",
+        "schools": [
+            {
+                "id": 15,
+                "name": "Rhodes College",
+                "status": "active",
+                "status_readable": "Active",
+                "abbreviation": "RC",
+                "latitude": 35.1524611,
+                "longitude": -89.9888392,
+                "website": "https:\/\/www.rhodes.edu\/",
+                "logo": "https:\/\/student-ally-school-logos.s3.us-east-2.amazonaws.com\/97b35cca-010f-4852-977b-2ea60f6d85a4",
+                "orientation_reminder": 1,
+                "components": {
+                    "alert": false,
+                    "orientation": true,
+                    "case_management": false,
+                    "coins_orientation": true,
+                    "security_geo_link": false,
+                    "security_geo_timer": false,
+                    "security_safe_zone": false,
+                    "security_instant_alert": false,
+                    "security_guardian_angel": false,
+                    "security_standard_timer": false,
+                    "campus_security_tip_line": false
+                },
+                "sms_number": null
+            }
+        ],
+        "questions": [
+            {
+                "id": 1063,
+                "question": "How can you report assaults, hazing incidents, or other discrimination to your school?",
+                "order": 1,
+                "answers": [
+                    {
+                        "id": 3912,
+                        "answer": "A. Through the \"Reports & Support\" button at the top right of the Student Ally app.",
+                        "explanation": "Correct, but the answer was all of the above.",
+                        "is_correct_answer": 0,
+                        "order_column": 1
+                    },
+                    {
+                        "id": 3913,
+                        "answer": "B. In person at Friends' Residence Life and Title IX offices.",
+                        "explanation": "Correct, but the answer was all of the above.",
+                        "is_correct_answer": 0,
+                        "order_column": 2
+                    },
+                    {
+                        "id": 3914,
+                        "answer": "C. Online through Student Ally's web portal.",
+                        "explanation": "Correct, but the answer was all of the above.",
+                        "is_correct_answer": 0,
+                        "order_column": 3
+                    },
+                    {
+                        "id": 3915,
+                        "answer": "D. All of the above.",
+                        "explanation": "C",
+                        "is_correct_answer": 1,
+                        "order_column": 4
+                    }
+                ],
+                "created_at": "2025-08-20T07:01:18.000000Z",
+                "updated_at": "2025-08-20T07:01:18.000000Z"
+            },
+            {
+                "id": 1065,
+                "question": "On behalf of Student Ally, thank you for completing this refresher.",
+                "order": 3,
+                "answers": [
+                    {
+                        "id": 3919,
+                        "answer": "COMPLETE TRAINING",
+                        "explanation": "C",
+                        "is_correct_answer": 1,
+                        "order_column": 1
+                    }
+                ],
+                "created_at": "2025-08-20T07:01:19.000000Z",
+                "updated_at": "2025-08-26T03:14:49.000000Z"
+            }
+        ],
+        "total_passed": 511,
+        "total_passed_score": 51100,
+        "total_students": 511,
+        "minimum_score_to_pass": 75,
+        "order_column": 221,
+        "is_blocking": 1,
+        "play_sound": 1,
+        "for_students": 1,
+        "for_employees": 0,
+        "created_at": "2025-08-20T07:01:18.000000Z",
+        "updated_at": "2025-11-02T16:49:22.000000Z"
+    }
+}
